@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="The Odin Project Curriculum">
+    <meta name="keywords" content="HTML,CSS,JavaScript">
+    <meta name="author" content="Ceda Nikolic">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="Shortcut Icon" href="/Assets/open-book.png">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <title>Library Project</title>
+</head>
+<body>
+    <article id="Library-App">
+        <nav id="nav">
+            <header>
+                <img src="/Assets/open-book.png" alt="Library-Logo">
+                <h2 class="title">urbanRead</h2>
+            </header>
+            <aside class="theme-toggle">
+                <div class="toggle-btn"></div>
+                <i class="fas fa-eye"></i>
+            </aside>
+            <aside class="save-buttons">
+                <button class="save-to-storage">Saving Locally</button>
+            </aside>
+        </nav>
+        <main id="lib-section">
+            <div class="filter-btns">
+                <button class="filter filter-all-books filter-active">
+                    <p>All Books</p>
+                </button>
+                <button class="filter filter-read">
+                    <p>Read</p>
+                </button>
+                <button class="filter filter-unread">
+                    <p>Unread</p>
+                </button>
+                <div class="slider"></div>
+            </div>
+
+            <section id="books">
+                <div class="add-new-book">
+                    <button class="add">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </section>
+            <aside class="library-log">
+                <h4>Your Library has</h4>
+                <p class="total">Total of Books: 5</p>
+                <p class="finished">Finished: 2</p>
+                <p class="unfinished">Unfinished: 3</p>
+            </aside>
+        </main>
+        <div class="form-overlay">
+            <form id="form">
+                <h3 class="form-title">Fill out the form and Submit</h3>
+                <div class="form-control">
+                    <input type="text" name="book-name" id="new-book-name" required autocomplete="off">
+                    <label for="book-name">Name of the Book</label>
+                </div>
+                <div class="form-control">
+                    <input type="text" name="author" id="new-author" required autocomplete="off">
+                    <label for="author">Author</label>
+                </div>
+                <div class="form-control">
+                    <input type="number" name="pages" id="new-pages" required>
+                    <label for="pages">Number of Pages</label>
+                </div>
+                <h3 class="form-second-title">Have you read the book yet?</h3>
+                <div class="checkbox">
+                    <label class="switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" class="hasRead" />
+                        <div class="slider round"></div>
+                    </label>
+                </div>
+                <button type="submit" class="submit">Submit</button>
+                <button type="button" class="close"><i class="fas fa-times"></i></button>
+            </form>
+        </div>
+        <p class="copyright">Made by ceddah</p>
+    </article>
+    <script src="./script.js"></script>
+</body>
+</html>
