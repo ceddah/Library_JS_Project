@@ -1,0 +1,521 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary-color: #212121;
+    --background: #F6F6F6;
+    --button-color: #A35400;
+    --button-border: #C25452;
+    --card-color: #fff;
+    --success-color: #00ADA9;
+    --failure-color: #EE4B2B;
+    --local-btn: #C25452;
+    --box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+[data-theme="Dark"] {
+    --primary-color: #F6F6F6;
+    --background: #212121;
+    --card-color: #f6f6f6;
+    --box-shadow: 3px 2px 5px 0px rgba(173,152,173,0.71);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html * i {
+    user-select: none;
+    pointer-events: none;
+}
+
+html {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    height: auto;
+    max-width: 100vw;
+    background-color: var(--background);
+}
+
+#Library-App {
+    min-height: 100vh;
+    width: 100%;
+    padding: 0 4rem;
+    position: relative;
+}
+
+#Library-App #nav {
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #c0c0c0;
+}
+
+#nav header {
+    width: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#nav header img {
+    width: 85px;
+    height: 85px;
+}
+#nav header .title {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--primary-color);
+    user-select: none;
+}
+
+#nav .save-buttons button{
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: var(--button-color);
+    border: 1px solid var(--button-border);
+    color: #fff;
+    cursor: pointer;
+    width: 130px;
+    transition: 0.2s ease;
+    opacity: 0.3;
+    /* letter-spacing: 1px; */
+}
+#nav .save-buttons button.active {
+    opacity: 1;
+}
+#nav .save-buttons button.active:hover {
+    background-color: #b86309;
+}
+#nav .save-buttons button:focus {
+    outline: none;
+}
+#nav .save-buttons button.active:active {
+    transform: scale(0.98);
+}
+
+#nav .theme-toggle {
+    position: relative;
+    cursor: pointer;
+}
+#nav .theme-toggle div {
+    background-color: var(--primary-color);
+    border: none;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    height: 40px;
+    width: 40px;
+    transform: rotate(135deg);
+}
+
+#nav .theme-toggle i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: var(--background);
+    font-size: 20px;
+}
+
+#lib-section {
+    padding-top: 3rem;
+    position: relative;
+    height: auto;
+}
+
+#lib-section .filter-btns {
+    margin: 0 auto 3rem auto;
+    width: 330px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+#lib-section .filter-btns button {
+    width: 33.3%;
+    border: none;
+    padding: 0.6rem;
+    outline: none;
+    cursor: pointer;
+    background-color: #A35400B3;
+    color: #ffffffA1;
+    font-size: 16px;
+    transition: 0.4s ease;
+}
+
+#lib-section .filter-btns button:focus {
+    outline: none;
+}
+
+#lib-section .filter-btns button p {
+    z-index: 55;
+    position: relative;
+    pointer-events: none;
+}
+
+#lib-section .filter-btns .slider {
+    width: 33.3%;
+    height: 100%;
+    background: var(--button-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.4s ease; 
+    pointer-events: none;
+}
+
+#lib-section .filter-btns button.filter-active {
+    color: #fff;
+    font-weight: 600;
+}
+
+#lib-section .filter-btns .filter-all-books.filter-active ~ .slider{
+    left: 0;
+    background: var(--button-color);
+}
+#lib-section .filter-btns .filter-read.filter-active ~ .slider {
+    left: 33.3%;
+    background: var(--button-color);
+}
+#lib-section .filter-btns .filter-unread.filter-active ~ .slider {
+    left: 66.6%;
+    background: var(--button-color);
+}
+
+#lib-section .library-log {
+    position: absolute;
+    right: 0;
+    top: 15px;
+    background-color: var(--card-color);
+    box-shadow: var(--box-shadow);
+    padding: 0.5rem 1rem;
+    width: 230px;
+    height: 150px;
+}
+#lib-section .library-log h4 {
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+#lib-section .library-log p {
+    line-height: 35px;
+    font-size: 14px;
+    padding-left: 2.5rem;
+    font-weight: 300;
+}
+
+#lib-section #books {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    align-items: center;
+    padding: 4rem 7rem 3rem;
+}
+
+#lib-section #books .book {
+    background-color: var(--card-color);
+    padding: 2.5rem 1.5rem 0;
+    height: 280px;
+    width: 230px;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+}
+
+#lib-section #books .book .book-title {
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+#lib-section #books .book p {
+    line-height: 40px;
+    font-size: 14px;
+}
+
+#lib-section #books .book .utility-btns {
+    width: 100%;
+    height: 45px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#lib-section #books .book .utility-btns .edit {
+    background-color: var(--success-color);
+    height: 100%;
+    width: 85px;
+    border: none;
+    outline: none;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+#lib-section #books .book .utility-btns .edit:hover {
+    background-color: #0cb9b6;
+}
+#lib-section #books .book .utility-btns .edit:active {
+    transform: scale(0.98);
+}
+
+#lib-section #books .book .utility-btns .remove {
+    background-color: var(--failure-color);
+    height: 100%;
+    width: 85px;
+    border: none;
+    outline: none;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+#lib-section #books .book .utility-btns .remove:hover {
+   background-color: #e94221; 
+}
+#lib-section #books .book .utility-btns .remove:active {
+    transform: scale(0.98);
+}
+
+#lib-section #books .book .checker {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--success-color);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.1s ease;
+}
+
+#lib-section #books .book .checker.bookIsNotRead {
+    background-color: var(--failure-color);
+}
+
+#lib-section #books .add-new-book {
+    background-color: transparent;
+    height: 280px;
+    width: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#lib-section #books .add-new-book button {
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    border: var(--success-color) 2px solid;
+    background: transparent;
+    outline: none;
+    transition: 0.8s ease-in-out;
+    cursor: pointer;
+}
+#lib-section #books .add-new-book button:hover {
+    border: 2px solid var(--background);
+    border-radius: 30%;
+}
+
+#lib-section #books .add-new-book button:hover i {
+    transform: scale(3);
+}
+
+#lib-section #books .add-new-book button i {
+    font-size: 30px;
+    color: var(--success-color);
+    transition: 0.8s ease-in-out;
+}
+
+#Library-App .copyright {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    color: var(--primary-color);
+    transform: translateX(-50%);
+    font-size: 13px;
+}
+
+#Library-App .form-overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 99;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(1px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+#Library-App .form-overlay.enter-new-book {
+    display: flex;
+}
+
+#Library-App .form-overlay #form {
+    height: 500px;
+    width: 350px;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 4rem 2rem;
+    position: relative;
+}
+
+#Library-App .form-overlay #form .form-title {
+    font-weight: 500;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+#Library-App .form-overlay #form .form-control {
+    background: red;
+    margin-bottom: 2rem;
+    height: 30px;
+    position: relative;
+}
+
+#Library-App .form-overlay #form .form-control input {
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    outline: none;
+}
+
+#Library-App .form-overlay #form .form-control label {
+    position: absolute;
+    left: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    pointer-events: none;
+}
+
+#Library-App .form-overlay #form .form-second-title {
+    font-weight: 400;
+    text-align: center;
+}
+
+#Library-App .form-overlay #form .submit {
+    border-radius: 3px;
+    width: 120px;
+    height: 35px;
+    border: 1px solid #000;
+    background-color: #f6f6f6;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+}
+#Library-App .form-overlay #form .submit:hover {
+    background-color: #f0efef;
+}
+
+#Library-App .form-overlay #form .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+#Library-App .form-overlay #form .close i {
+    font-size: 24px;
+    pointer-events: none;
+}
+
+#Library-App .form-overlay #form .checkbox {
+    text-align: center;
+    margin: 1rem 0 2rem;
+}
+
+.checkbox .switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+  
+.checkbox .switch input {
+    display:none;
+}
+  
+.checkbox .slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+  
+.checkbox .slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+}
+  
+.checkbox input:checked + .slider {
+    background-color: #212121;
+}
+  
+.checkbox input:checked + .slider:before {
+    transform: translateX(26px);
+}
+  
+.checkbox .slider.round {
+    border-radius: 34px;
+}
+  
+.checkbox .slider.round:before {
+    border-radius: 50%;
+}
+
+/* Input Animations */
+.form-control label span {
+    display: inline-block;
+    font-size: 14px;
+    min-width: 5px;
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.262, 1.55);
+}
+
+.form-control input:focus + label span,
+.form-control input:valid + label span {
+    transform: translateY(-30px);
+}
+
+/* Dark Mode Transition */
+html.color-theme-in-transition,
+html.color-theme-in-transition *,
+html.color-theme-in-transition *:before,
+html.color-theme-in-transition *:after {
+  transition: all 750ms !important;
+  transition-delay: 0 !important;
+}
