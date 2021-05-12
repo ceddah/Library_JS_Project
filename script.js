@@ -32,23 +32,23 @@ let darkMode = false;
 let saveBooks = true;
 
 //Functions
-function Book(name, author, pages, hasRead) {
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
-    this.hasRead = hasRead;
+class Book {
+    constructor(name, author, pages, hasRead) {
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.hasRead = hasRead;
+    }
+    changeValues(newName, newAuthor, newPages, readStatus) {
+        this.name = newName;
+        this.author = newAuthor;
+        this.pages = newPages;
+        this.hasRead = readStatus;
+    }
+    changeReadingStatus() {
+        this.hasRead = !this.hasRead;
+    }
 }
-
-Book.prototype.changeValues = function(newName, newAuthor, newPages, readStatus) {
-    this.name = newName;
-    this.author = newAuthor;
-    this.pages = newPages;
-    this.hasRead = readStatus;
-}
-
-Book.prototype.changeReadingStatus = function() {
-    this.hasRead = !this.hasRead;
-} 
 
 function setNewBook(e) {
     e.preventDefault();
